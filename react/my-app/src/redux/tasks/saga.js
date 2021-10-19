@@ -1,12 +1,14 @@
-import { call, put, takeLatest } from "redux-saga/effects";
-import { fetchTasks, postTasks, updateTasks } from "./api";
+import { call, put, takeLatest, take, delay } from "redux-saga/effects";
+import { fetchTasks, postTasks, updateTasks, deleteTasks } from "./api";
 import {
   getTasksSuccess,
   getTasksFailure,
   createTasksSuccess,
   createTasksFailure,
   updateTasksSuccess,
-  updateTasksFailure
+  updateTasksFailure,
+  deleteTasksSuccess,
+  deleteTasksFailure,
 } from "./action";
 
 function* handleGetTasks() {
@@ -52,4 +54,25 @@ function* handleTaskUpdate({ payload: { id, newUpdates } }) {
 
 export function* watcherTaskUpdateSaga() {
   yield takeLatest("UPDATE_TASKS_START", handleTaskUpdate);
+}
+
+function* handleTaskDelete(taskID) {
+  try {
+    console.log('testing payload, ', taskID)
+    const response = yield call(deleteTasks, taskID);
+    console.log('testing response in saga2, ', response)
+    yield put(deleteTasksSuccess(taskID));
+  } catch (error) {
+    console.log('error in saga, ', error)
+    yield put(deleteTasksFailure(error));
+  }
+}
+
+export function* watcherTaskDeleteSaga() {
+  // yield takeLatest("DELETE_TASKS_START", handleTaskDelete);
+  while (true) {
+    const { payload: taskID } = yield take("DELETE_TASKS_START");
+    console.log('testing taskID in saga', taskID)
+    yield call(handleTaskDelete, taskID);
+  }
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Table, Container, Button, Form, FormGroup, Input } from "reactstrap";
 import "../App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTaskStart } from "../redux/tasks/action";
+import { updateTaskStart, deleteTaskStart } from "../redux/tasks/action";
 
 export default function ListCompilation({ testing }) {
   console.log("testing testing in componenet, ", testing);
@@ -29,7 +29,7 @@ export default function ListCompilation({ testing }) {
 
   const handleUpdatesSave = (e) => {
     const id = e.target.value;
-    console.log('testing id', id)
+    console.log("testing id", id);
     const newUpdates = {
       task_title: newTaskTitle,
       task_body: newTaskBody,
@@ -38,9 +38,15 @@ export default function ListCompilation({ testing }) {
     dispatch(updateTaskStart({ id, newUpdates }));
   };
 
+  const handleDelete = (e) => {
+    const id = e.target.value;
+    console.log("Delete Button Works!", id);
+    dispatch(deleteTaskStart(id))
+  };
+
   useEffect(() => {
-    setEdit(false)
-    setEditRowId(null)
+    setEdit(false);
+    setEditRowId(null);
   }, [tasks]);
 
   // if(actionType == "edit") {
@@ -117,7 +123,12 @@ export default function ListCompilation({ testing }) {
                   >
                     Save
                   </Button>
-                  <Button color="danger" className="table-button-size">
+                  <Button
+                    color="danger"
+                    className="table-button-size"
+                    onClick={handleDelete}
+                    value={e.id}
+                  >
                     Delete
                   </Button>
                 </div>

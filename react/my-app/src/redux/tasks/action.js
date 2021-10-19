@@ -63,4 +63,27 @@ export const updateTasksFailure = (message) => {
   }
 }
 
+export const deleteTaskStart = (taskID) => {
+  console.log('checking taskID in action.js', taskID)
+  return {
+    type: "DELETE_TASKS_START",
+    payload: taskID
+  }
+}
+
+export const deleteTasksSuccess = (taskID) => {
+  console.log('testing delete success')
+  return {
+    type: "DELETE_TASKS_SUCCESS",
+    payload: taskID
+  }
+}
+
+export const deleteTasksFailure = (message) => {
+  return {
+    type: "DELETE_TASKS_FAILED",
+    message: message
+  }
+}
+
 

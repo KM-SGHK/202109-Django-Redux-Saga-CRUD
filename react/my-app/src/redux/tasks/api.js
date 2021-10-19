@@ -32,3 +32,16 @@ export async function updateTasks(id, updateData) {
   console.log("checking api results from PUT Case in api.js", result);
   return result;
 }
+
+export async function deleteTasks(id) {
+  console.log('checking deleteData in api.js, ', id)
+  const result = await fetch(`http://127.0.0.1:8000/tasks/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  // const result = await res.json();
+  console.log("checking api results from DELETE Case in api.js", result);
+  return result;
+}

@@ -27,7 +27,7 @@ const taskReducer = (state = initialState, action) => {
       };
     case "UPDATE_TASKS_SUCCESS":
       console.log(
-        "testing action.payload from PUT case in reducer, ",
+        "testing action.payload from DELETE case in reducer, ",
         action.payload
       );
       return {
@@ -41,6 +41,15 @@ const taskReducer = (state = initialState, action) => {
             return e;
           }),
         ],
+      };
+      case "DELETE_TASKS_SUCCESS":
+      console.log(
+        "testing action.payload from PUT case in reducer, ",
+        action.payload
+      );
+      return {
+        ...state.tasks.slice(0,action.payload),
+        ...state.tasks.slice(action.payload + 1)
       };
     default:
       return state;

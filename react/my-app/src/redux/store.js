@@ -5,6 +5,7 @@ import {
   watcherTaskSaga,
   watcherTaskCreationSaga,
   watcherTaskUpdateSaga,
+  watcherTaskDeleteSaga
 } from "./tasks/saga";
 import taskReducer from "./tasks/reducer";
 
@@ -31,6 +32,7 @@ function* rootSaga() {
     watcherTaskSaga(),
     watcherTaskCreationSaga(),
     watcherTaskUpdateSaga(),
+    watcherTaskDeleteSaga()
   ]);
 }
 
