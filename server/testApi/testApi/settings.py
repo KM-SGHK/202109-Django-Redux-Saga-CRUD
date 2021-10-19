@@ -84,10 +84,6 @@ DATABASES = {
 
         'NAME': 'pythonTesting',
 
-        'USER': 'postgres',
-
-        'PASSWORD': '860102',
-
         'HOST': '127.0.0.1',
 
         'PORT': '5432',

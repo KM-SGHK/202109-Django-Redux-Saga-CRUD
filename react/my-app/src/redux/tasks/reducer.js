@@ -42,14 +42,14 @@ const taskReducer = (state = initialState, action) => {
           }),
         ],
       };
-      case "DELETE_TASKS_SUCCESS":
+    case "DELETE_TASKS_SUCCESS":
       console.log(
         "testing action.payload from PUT case in reducer, ",
         action.payload
       );
       return {
-        ...state.tasks.slice(0,action.payload),
-        ...state.tasks.slice(action.payload + 1)
+        ...state.tasks.slice(0, action.payload),
+        ...state.tasks.slice(action.payload + 1),
       };
     default:
       return state;
