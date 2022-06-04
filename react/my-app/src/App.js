@@ -78,15 +78,4 @@ function App() {
 
 export default App;
 
-// async function fetching() {
-//   const res = await fetch(
-//     "https://jsonplaceholder.typicode.com/posts",
-//     {
-//       method: "GET"
-//     }
-//   );
-//   const result = await res.json()
-//   console.log('testing result, ', result.slice(0,20))
-//   setList(result.slice(0,20))
 
-//  fetching()
